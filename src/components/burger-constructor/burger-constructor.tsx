@@ -25,7 +25,7 @@ export const BurgerConstructor: FC = () => {
   const dispatch = useDispatch();
 
   let arr: string[] = [];
-  // Используем безопасный доступ к свойствам
+
   const ingredients = constructorItems.ingredients?.map((i) => i._id) || [];
 
   if (constructorItems.bun) {
