@@ -11,23 +11,31 @@ import {
 
 export const AppHeaderUI: FC<TAppHeaderUIProps> = ({ userName }) => {
   const getNavLinkClass = ({ isActive }: { isActive: boolean }) =>
-    `${styles.link} text text_type_main-default ml-2 ${isActive ? styles.active : ''}`;
+    `${styles.link} text text_type_main-default ml-2 ${isActive ? styles.link_active : ''}`;
 
   return (
     <header className={styles.header}>
       <nav className={`${styles.menu} p-4`}>
         <div className={styles.menu_part_left}>
           <NavLink to='/' className={getNavLinkClass}>
-            <BurgerIcon type={'primary'} />
-            <span className='text text_type_main-default ml-2 mr-10'>
-              Конструктор
-            </span>
+            {({ isActive }) => (
+              <>
+                <BurgerIcon type={isActive ? 'primary' : 'secondary'} />
+                <span className='text text_type_main-default ml-2 mr-10'>
+                  Конструктор
+                </span>
+              </>
+            )}
           </NavLink>
           <NavLink to='/feed' className={getNavLinkClass}>
-            <ListIcon type={'primary'} />
-            <span className='text text_type_main-default ml-2'>
-              Лента заказов
-            </span>
+            {({ isActive }) => (
+              <>
+                <ListIcon type={isActive ? 'primary' : 'secondary'} />
+                <span className='text text_type_main-default ml-2'>
+                  Лента заказов
+                </span>
+              </>
+            )}
           </NavLink>
         </div>
 
@@ -35,10 +43,14 @@ export const AppHeaderUI: FC<TAppHeaderUIProps> = ({ userName }) => {
           <Logo className='' />
         </div>
         <NavLink to='/profile' className={getNavLinkClass}>
-          <ProfileIcon type={'primary'} />
-          <span className='text text_type_main-default ml-2'>
-            {userName || 'Личный кабинет'}
-          </span>
+          {({ isActive }) => (
+            <>
+              <ProfileIcon type={isActive ? 'primary' : 'secondary'} />
+              <span className='text text_type_main-default ml-2'>
+                {userName || 'Личный кабинет'}
+              </span>
+            </>
+          )}
         </NavLink>
       </nav>
     </header>

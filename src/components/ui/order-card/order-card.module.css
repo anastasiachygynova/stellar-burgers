@@ -20,6 +20,10 @@
   align-items: center;
 }
 
+.number {
+  color: var(--text-primary-color);
+}
+
 .order_name {
   text-align: left;
 }

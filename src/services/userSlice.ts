@@ -72,7 +72,12 @@ export const updateUser = createAsyncThunk(
   async (data: Partial<TRegisterData>) => await updateUserApi(data)
 );
 
-export const logoutUser = createAsyncThunk('user/logoutUser', logoutApi);
+export const logoutUser = createAsyncThunk('user/logoutUser', async () => {
+  const response = await logoutApi();
+  localStorage.clear();
+  deleteCookie('accessToken');
+  return response;
+});
 
 export const userSlice = createSlice({
   name: 'user',
@@ -176,8 +181,6 @@ export const userSlice = createSlice({
         state.error = null;
         state.request = false;
         state.userData = null;
-        localStorage.clear();
-        deleteCookie('accessToken');
       })
       .addCase(getOrdersAll.pending, (state) => {
         state.error = null;

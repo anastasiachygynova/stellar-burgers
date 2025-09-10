@@ -16,6 +16,8 @@ import { AppHeader } from '@components';
 import { Modal, IngredientDetails, OrderInfo } from '@components';
 import { useDispatch } from '../../services/store';
 import { getIngredients } from '../../services/ingredientsSlice';
+import { getUser } from '../../services/userSlice';
+import { getCookie } from '../../utils/cookie';
 import '../../index.css';
 import styles from './app.module.css';
 
@@ -28,6 +30,14 @@ const App = () => {
 
   useEffect(() => {
     dispatch(getIngredients());
+  }, [dispatch]);
+
+  useEffect(() => {
+    const hasAccessToken = Boolean(getCookie('accessToken'));
+    const hasRefreshToken = Boolean(localStorage.getItem('refreshToken'));
+    if (hasAccessToken || hasRefreshToken) {
+      dispatch(getUser());
+    }
   }, [dispatch]);
 
   const handleModalClose = () => {
