@@ -88,6 +88,9 @@ export const userSlice = createSlice({
     },
     resetError: (state) => {
       state.error = null;
+    },
+    setUserOrders: (state, action) => {
+      state.userOrders = action.payload;
     }
   },
   selectors: {
@@ -198,6 +201,6 @@ export const userSlice = createSlice({
   }
 });
 
-export const { resetError, userLogout } = userSlice.actions;
+export const { resetError, userLogout, setUserOrders } = userSlice.actions;
 export const { getUserState, getError } = userSlice.selectors;
 export default userSlice.reducer;

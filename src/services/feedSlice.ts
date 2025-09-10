@@ -23,7 +23,13 @@ export const getFeeds = createAsyncThunk('feeds/all', getFeedsApi);
 export const feedSlice = createSlice({
   name: 'feed',
   initialState,
-  reducers: {},
+  reducers: {
+    setFeed: (state, action) => {
+      state.orders = action.payload.orders;
+      state.total = action.payload.total;
+      state.totalToday = action.payload.totalToday;
+    }
+  },
   selectors: {
     getFeedState: (state) => state
   },
@@ -48,4 +54,5 @@ export const feedSlice = createSlice({
 });
 
 export const { getFeedState } = feedSlice.selectors;
+export const { setFeed } = feedSlice.actions;
 export default feedSlice.reducer;
