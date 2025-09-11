@@ -21,6 +21,10 @@
   min-height: 64px;
 }
 
+.header_left {
+  flex-direction: row-reverse;
+}
+
 .button {
   display: flex;
   width: 24px;
@@ -31,6 +35,11 @@
   background-color: rgba(0, 0, 0, 0);
   margin-left: auto;
   padding: 0;
+}
+
+.button_left {
+  margin-left: 0;
+  margin-right: auto;
 }
 
 .img {

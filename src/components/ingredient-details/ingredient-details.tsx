@@ -5,7 +5,13 @@ import { Params, useParams } from 'react-router-dom';
 import { useSelector } from '../../services/store';
 import { getIngredientState } from '../../services/ingredientsSlice';
 
-export const IngredientDetails: FC = () => {
+type IngredientDetailsProps = {
+  showHeading?: boolean;
+};
+
+export const IngredientDetails: FC<IngredientDetailsProps> = ({
+  showHeading = true
+}) => {
   const { ingredients } = useSelector(getIngredientState);
   const { id } = useParams<Params>();
 
@@ -15,5 +21,19 @@ export const IngredientDetails: FC = () => {
     return <Preloader />;
   }
 
-  return <IngredientDetailsUI ingredientData={ingredientData} />;
+  return (
+    <div
+      style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+    >
+      {showHeading && (
+        <h1
+          className='text text_type_main-large'
+          style={{ marginTop: 24, marginBottom: 16 }}
+        >
+          Детали ингредиента
+        </h1>
+      )}
+      <IngredientDetailsUI ingredientData={ingredientData} />
+    </div>
+  );
 };

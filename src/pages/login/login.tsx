@@ -12,8 +12,7 @@ export const Login: FC = () => {
   const { isAuthenticated } = useSelector((state) => state.user);
   const navigate = useNavigate();
   const location = useLocation();
-  const from =
-    (location.state as { from?: Location })?.from?.pathname || '/profile';
+  const from = (location.state as { from?: Location })?.from?.pathname || '/';
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();

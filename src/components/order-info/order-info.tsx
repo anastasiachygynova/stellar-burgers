@@ -7,7 +7,11 @@ import { useParams } from 'react-router-dom';
 import { getOrderByNumber, getOrderState } from '../../services/orderSlice';
 import { getIngredientState } from '../../services/ingredientsSlice';
 
-export const OrderInfo: FC = () => {
+type OrderInfoProps = {
+  showNumberHeading?: boolean;
+};
+
+export const OrderInfo: FC<OrderInfoProps> = ({ showNumberHeading = true }) => {
   const number = Number(useParams().number);
   const { ingredients } = useSelector(getIngredientState);
   const { orderByNumberResponse, request } = useSelector(getOrderState);
@@ -62,5 +66,7 @@ export const OrderInfo: FC = () => {
     return <Preloader />;
   }
 
-  return <OrderInfoUI orderInfo={orderInfo} />;
+  return (
+    <OrderInfoUI orderInfo={orderInfo} showNumberHeading={showNumberHeading} />
+  );
 };

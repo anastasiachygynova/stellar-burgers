@@ -117,7 +117,7 @@ const App = () => {
             path='/ingredients/:id'
             element={
               <Modal title={'Детали ингредиента'} onClose={handleModalClose}>
-                <IngredientDetails />
+                <IngredientDetails showHeading={false} />
               </Modal>
             }
           />
@@ -128,7 +128,7 @@ const App = () => {
                 title={`#${location.pathname.split('/').pop()}`}
                 onClose={handleModalClose}
               >
-                <OrderInfo />
+                <OrderInfo showNumberHeading={false} />
               </Modal>
             }
           />
@@ -140,7 +140,7 @@ const App = () => {
                   title={`#${location.pathname.split('/').pop()}`}
                   onClose={handleModalClose}
                 >
-                  <OrderInfo />
+                  <OrderInfo showNumberHeading={false} />
                 </Modal>
               </ProtectedRoute>
             }

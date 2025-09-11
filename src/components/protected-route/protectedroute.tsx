@@ -15,7 +15,7 @@ export const ProtectedRoute = ({
   const location = useLocation();
 
   if (onlyUnAuth && isAuthenticated) {
-    return <Navigate to='/profile' replace />;
+    return <Navigate to='/' replace />;
   }
 
   if (!onlyUnAuth && !isAuthenticated) {
