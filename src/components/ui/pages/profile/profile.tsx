@@ -43,6 +43,8 @@ export const ProfileUI: FC<ProfileUIProps> = ({
             icon={'EditIcon'}
             disabled={nameDisabled}
             onIconClick={onNameIconClick}
+            onPointerEnterCapture={() => {}}
+            onPointerLeaveCapture={() => {}}
           />
         </div>
         <div className='pb-6'>
@@ -58,6 +60,8 @@ export const ProfileUI: FC<ProfileUIProps> = ({
             icon={'EditIcon'}
             disabled={emailDisabled}
             onIconClick={onEmailIconClick}
+            onPointerEnterCapture={() => {}}
+            onPointerLeaveCapture={() => {}}
           />
         </div>
         <div className='pb-6'>
@@ -72,6 +76,8 @@ export const ProfileUI: FC<ProfileUIProps> = ({
             size={'default'}
             icon={'ShowIcon'}
             onIconClick={onPasswordIconClick}
+            onPointerEnterCapture={() => {}}
+            onPointerLeaveCapture={() => {}}
           />
         </div>
         {isFormChanged && (

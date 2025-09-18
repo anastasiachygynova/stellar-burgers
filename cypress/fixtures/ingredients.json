@@ -1,0 +1,45 @@
+{
+  "success": true,
+  "data": [
+    {
+      "_id": "60d3b41abdacab0026a733c6",
+      "name": "Краторная булка N-200i",
+      "type": "bun",
+      "proteins": 80,
+      "fat": 24,
+      "carbohydrates": 53,
+      "calories": 420,
+      "price": 1255,
+      "image": "https://code.s3/bun.png",
+      "image_mobile": "https://code.s3/bun-mobile.png",
+      "image_large": "https://code.s3/bun-large.png"
+    },
+    {
+      "_id": "60d3b41abdacab0026a733cd",
+      "name": "Говяжий метеорит (отбивная)",
+      "type": "main",
+      "proteins": 800,
+      "fat": 800,
+      "carbohydrates": 300,
+      "calories": 4200,
+      "price": 3000,
+      "image": "https://code.s3/meat.png",
+      "image_mobile": "https://code.s3/meat-mobile.png",
+      "image_large": "https://code.s3/meat-large.png"
+    },
+    {
+      "_id": "60d3b41abdacab0026a733cf",
+      "name": "Соус традиционный галактический",
+      "type": "sauce",
+      "proteins": 50,
+      "fat": 22,
+      "carbohydrates": 11,
+      "calories": 100,
+      "price": 15,
+      "image": "https://code.s3/sauce.png",
+      "image_mobile": "https://code.s3/sauce-mobile.png",
+      "image_large": "https://code.s3/sauce-large.png"
+    }
+  ]
+}
+
