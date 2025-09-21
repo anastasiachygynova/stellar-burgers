@@ -1,6 +1,7 @@
 import reducer, { getIngredients } from '../ingredientsSlice';
+import { TIngredient } from '@utils-types';
 
-const initial = reducer(undefined, { type: 'INIT' } as any);
+const initial = reducer(undefined, { type: 'INIT' } as { type: string });
 
 describe('ingredientsSlice async flow', () => {
   it('handles pending', () => {
@@ -10,11 +11,22 @@ describe('ingredientsSlice async flow', () => {
   });
 
   it('handles fulfilled', () => {
-    const payload = [{ _id: '1' }];
-    const state = reducer(
-      initial,
-      getIngredients.fulfilled(payload as any, 'req1')
-    );
+    const payload: TIngredient[] = [
+      {
+        _id: '1',
+        name: 'Test Ingredient',
+        type: 'main',
+        proteins: 10,
+        fat: 5,
+        carbohydrates: 15,
+        calories: 100,
+        price: 100,
+        image: 'test.jpg',
+        image_large: 'test-large.jpg',
+        image_mobile: 'test-mobile.jpg'
+      }
+    ];
+    const state = reducer(initial, getIngredients.fulfilled(payload, 'req1'));
     expect(state.loading).toBe(false);
     expect(state.error).toBeNull();
     expect(state.ingredients).toEqual(payload);
@@ -23,7 +35,7 @@ describe('ingredientsSlice async flow', () => {
   it('handles rejected', () => {
     const state = reducer(
       initial,
-      getIngredients.rejected(new Error('boom') as any, 'req1')
+      getIngredients.rejected(new Error('boom'), 'req1')
     );
     expect(state.loading).toBe(false);
     expect(state.error).toBe('boom');

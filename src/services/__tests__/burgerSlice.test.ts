@@ -63,7 +63,7 @@ describe('burgerSlice reducer', () => {
 
   it('should handle moveIngredientUp', () => {
     let state = reducer(initialState, addIngredient(main));
-    const main2 = { ...main, _id: 'main2', name: 'Котлета 2' } as any;
+    const main2: TIngredient = { ...main, _id: 'main2', name: 'Котлета 2' };
     state = reducer(state, addIngredient(main2));
     const ids = state.constructorItems.ingredients.map((i) => i.id);
     const afterMove = reducer(state, moveIngredientUp(1));
@@ -74,7 +74,7 @@ describe('burgerSlice reducer', () => {
 
   it('should handle moveIngredientDown', () => {
     let state = reducer(initialState, addIngredient(main));
-    const main2 = { ...main, _id: 'main2', name: 'Котлета 2' } as any;
+    const main2: TIngredient = { ...main, _id: 'main2', name: 'Котлета 2' };
     state = reducer(state, addIngredient(main2));
     const ids = state.constructorItems.ingredients.map((i) => i.id);
     const afterMove = reducer(state, moveIngredientDown(0));
@@ -83,26 +83,54 @@ describe('burgerSlice reducer', () => {
     expect(movedIds[1]).toBe(ids[0]);
   });
 
-  it('should handle orderBurger pending/fulfilled/rejected', () => {
-    let state = reducer(initialState, orderBurger.pending('req1', ['id1']));
+  it('should handle orderBurger pending', () => {
+    const state = reducer(initialState, orderBurger.pending('req1', ['id1']));
     expect(state.loading).toBe(true);
     expect(state.orderRequest).toBe(true);
     expect(state.error).toBeNull();
+  });
 
-    state = reducer(
-      state,
-      orderBurger.fulfilled({ order: { number: 777 } } as any, 'req1', ['id1'])
+  it('should handle orderBurger fulfilled', () => {
+    const state = reducer(
+      initialState,
+      orderBurger.fulfilled(
+        {
+          success: true,
+          order: {
+            _id: '1',
+            status: 'done',
+            name: 'Test Order',
+            createdAt: '2023-01-01',
+            updatedAt: '2023-01-01',
+            number: 777,
+            ingredients: []
+          },
+          name: 'Test Order'
+        },
+        'req1',
+        ['id1']
+      )
     );
     expect(state.loading).toBe(false);
     expect(state.orderRequest).toBe(false);
     expect(state.error).toBeNull();
-    expect(state.orderModalData).toEqual({ number: 777 });
+    expect(state.orderModalData).toEqual({
+      _id: '1',
+      status: 'done',
+      name: 'Test Order',
+      createdAt: '2023-01-01',
+      updatedAt: '2023-01-01',
+      number: 777,
+      ingredients: []
+    });
     expect(state.constructorItems).toEqual({ bun: null, ingredients: [] });
+  });
 
-    const rejected = orderBurger.rejected(new Error('fail') as any, 'req2', [
-      'id2'
-    ]);
-    state = reducer(initialState, rejected);
+  it('should handle orderBurger rejected', () => {
+    const state = reducer(
+      initialState,
+      orderBurger.rejected(new Error('fail'), 'req2', ['id2'])
+    );
     expect(state.loading).toBe(false);
     expect(state.orderRequest).toBe(false);
     expect(state.error).toBe('fail');
