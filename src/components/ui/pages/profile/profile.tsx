@@ -13,7 +13,13 @@ export const ProfileUI: FC<ProfileUIProps> = ({
   updateUserError,
   handleSubmit,
   handleCancel,
-  handleInputChange
+  handleInputChange,
+  nameDisabled,
+  emailDisabled,
+  onNameIconClick,
+  onEmailIconClick,
+  passwordType,
+  onPasswordIconClick
 }) => (
   <main className={`${commonStyles.container}`}>
     <div className={`mt-30 mr-15 ${styles.menu}`}>
@@ -35,6 +41,10 @@ export const ProfileUI: FC<ProfileUIProps> = ({
             errorText={''}
             size={'default'}
             icon={'EditIcon'}
+            disabled={nameDisabled}
+            onIconClick={onNameIconClick}
+            onPointerEnterCapture={() => {}}
+            onPointerLeaveCapture={() => {}}
           />
         </div>
         <div className='pb-6'>
@@ -48,11 +58,15 @@ export const ProfileUI: FC<ProfileUIProps> = ({
             errorText={''}
             size={'default'}
             icon={'EditIcon'}
+            disabled={emailDisabled}
+            onIconClick={onEmailIconClick}
+            onPointerEnterCapture={() => {}}
+            onPointerLeaveCapture={() => {}}
           />
         </div>
         <div className='pb-6'>
           <Input
-            type={'password'}
+            type={passwordType}
             placeholder={'Пароль'}
             onChange={handleInputChange}
             value={formValue.password}
@@ -60,7 +74,10 @@ export const ProfileUI: FC<ProfileUIProps> = ({
             error={false}
             errorText={''}
             size={'default'}
-            icon={'EditIcon'}
+            icon={'ShowIcon'}
+            onIconClick={onPasswordIconClick}
+            onPointerEnterCapture={() => {}}
+            onPointerLeaveCapture={() => {}}
           />
         </div>
         {isFormChanged && (
